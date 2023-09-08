@@ -1,0 +1,18 @@
+version: '3'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    tty: true
+    volumes:
+      - ./frontend/package.json:/app/package.json
+      - ./frontend/tsconfig.json:/app/tsconfig.json
+      - ./frontend/public:/app/public
+      - ./frontend/src:/app/src
+    environment:
+      - PORT=8080
+      - WATCHPACK_POLLING=true
+    ports:
+      - '8080:8080'
+    command: sh -c "${CMD:-npm run start}"
