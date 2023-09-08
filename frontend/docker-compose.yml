@@ -6,10 +6,10 @@ services:
       dockerfile: docker/Dockerfile
     tty: true
     volumes:
-      - ./frontend/package.json:/app/package.json
-      - ./frontend/tsconfig.json:/app/tsconfig.json
-      - ./frontend/public:/app/public
-      - ./frontend/src:/app/src
+      - ./package.json:/app/package.json
+      - ./tsconfig.json:/app/tsconfig.json
+      - ./public:/app/public
+      - ./src:/app/src
     environment:
       - PORT=8080
       - WATCHPACK_POLLING=true
