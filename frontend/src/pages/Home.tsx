@@ -7,13 +7,31 @@ import {
 } from '@mui/material';
 import { HeaderBar } from '../components/Header';
 import { SelectBox } from '../components/Common/Select';
-import { useState } from 'react';
+import { useState, useRef, ChangeEvent, FormEvent } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export const Home = () => {
   const [category, setCategory] = useState('');
+  const content = useRef('');
+  const navigate = useNavigate();
 
-  const handleChange = (event: SelectChangeEvent) => {
+  const categoryHandle = (event: SelectChangeEvent) => {
     setCategory(event.target.value);
+  };
+
+  const contentHandle = (
+    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
+    content.current = event.target.value;
+  };
+
+  const toSearchResult = (event: FormEvent<HTMLFormElement>) => {
+    // 既存の処理のキャンセル
+    event.preventDefault();
+
+    navigate('/searchResult', {
+      state: { category: category, content: content.current },
+    });
   };
 
   return (
@@ -26,14 +44,15 @@ export const Home = () => {
           gap: '20px',
         }}
       >
-        <Stack component="form" sx={{ gap: '10px' }}>
+        <Stack component="form" sx={{ gap: '10px' }} onSubmit={toSearchResult}>
           <SelectBox
             elements={[
-              { value: 'Foods', content: '食べ物' },
-              { value: 'Sports', content: 'スポーツ' },
+              { value: 'アクション', content: 'アクション' },
+              { value: 'SF', content: 'SF' },
+              { value: 'ファンタジー', content: 'ファンタジー' },
             ]}
             value={category}
-            onChange={handleChange}
+            onChange={categoryHandle}
             sx={{ maxWidth: '360px', margin: '0' }}
             label="カテゴリ"
           />
@@ -43,6 +62,7 @@ export const Home = () => {
               label=""
               variant="outlined"
               sx={{ width: '100%' }}
+              onChange={contentHandle}
             />
             <Button
               type="submit"
