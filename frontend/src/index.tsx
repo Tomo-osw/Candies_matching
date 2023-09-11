@@ -6,7 +6,9 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import PublisherLoggedInPage from './pages/PublisherLoggedInPage';
-// import { Home } from './pages/Home';
+
+import { Home } from './pages/Home';
+import './styles/global.css';
 
 // デフォルト色の設定
 const theme = createTheme({
@@ -37,7 +39,7 @@ root.render(
           <Route path="/" element={<App />} />
           <Route path="/sample" element={<PlaceholderPage text={'sample'} />} />
           {/* <Route path="/home" element={<Home />} /> */}
-          <Route path="/home" element={<PlaceholderPage text={'home'} />} />
+          <Route path="/home" element={<Home />} />
           <Route
             path="/searchResult"
             element={<PlaceholderPage text={'searchResult'} />}
@@ -47,10 +49,7 @@ root.render(
             element={<PlaceholderPage text={'detail page'} />}
           />
           <Route path="/thanks" element={<PlaceholderPage text={'thanks'} />} />
-          <Route
-            path="/login/publisher"
-            element={<PublisherLoggedInPage />}
-          />
+          <Route path="/login/publisher" element={<PublisherLoggedInPage />} />
           <Route
             path="/registerManga"
             element={<PlaceholderPage text={'Manga Add Page'} />}
