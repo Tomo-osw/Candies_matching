@@ -1,0 +1,2 @@
+INSERT INTO companies (name, email, password, is_publisher, is_advertiser, is_admin) VALUES ("admin", "admin@example.com", "password", 1, 0, 1);
+INSERT INTO companies (name, email, password, is_publisher, is_advertiser) VALUES ("KADOKAWA", "kadokawa@example.com", "password", 1, 0);
