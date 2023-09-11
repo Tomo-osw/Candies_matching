@@ -5,9 +5,11 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
-import { Home } from './pages/Home'
-import SearchResult from './pages/SearchResult';
+import PublisherLoggedInPage from './pages/PublisherLoggedInPage';
+import { Home } from './pages/Home';
+import './styles/global.css';
 import ThanksPage from './pages/ThanksPage';
+import SearchResult from './pages/SearchResult';
 
 // デフォルト色の設定
 const theme = createTheme({
@@ -38,16 +40,14 @@ root.render(
           <Route path="/" element={<App />} />
           <Route path="/sample" element={<PlaceholderPage text={'sample'} />} />
           {/* <Route path="/home" element={<Home />} /> */}
-          <Route path="/searchResult" element={<SearchResult text={'searchResult'} />} />
+          <Route path="/searchResult" element={<SearchResult text={'searchResult'} />} /
+          <Route path="/home" element={<Home />} />
           <Route
             path="/detail/:id"
             element={<PlaceholderPage text={'detail page'} />}
           />
           <Route path="/thanks" element={<ThanksPage />} />
-          <Route
-            path="/login/publisher"
-            element={<PlaceholderPage text={'Publisher Page'} />}
-          />
+          <Route path="/login/publisher" element={<PublisherLoggedInPage />} />
           <Route
             path="/registerManga"
             element={<PlaceholderPage text={'Manga Add Page'} />}
