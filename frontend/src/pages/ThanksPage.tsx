@@ -27,11 +27,13 @@ const ThanksPage: React.FC = () => {
                 fontSize: {
                     xs: '1.2rem',
                     md: '1.5rem',
+                    lg: '1.8rem',
                 }
             }}
         >
             ありがとうございます。
         </Typography>
+        <Box sx={{ height: '20px' }} />
         <Typography>担当者から折り返し連絡をするのでお待ちください。</Typography>
     </Container>
   );

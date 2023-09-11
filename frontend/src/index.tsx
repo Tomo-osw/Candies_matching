@@ -9,6 +9,7 @@ import PublisherLoggedInPage from './pages/PublisherLoggedInPage';
 
 import { Home } from './pages/Home';
 import './styles/global.css';
+import ThanksPage from './pages/ThanksPage';
 
 // デフォルト色の設定
 const theme = createTheme({
@@ -48,7 +49,7 @@ root.render(
             path="/detail/:id"
             element={<PlaceholderPage text={'detail page'} />}
           />
-          <Route path="/thanks" element={<PlaceholderPage text={'thanks'} />} />
+          <Route path="/thanks" element={<ThanksPage />} />
           <Route path="/login/publisher" element={<PublisherLoggedInPage />} />
           <Route
             path="/registerManga"
