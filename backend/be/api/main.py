@@ -1,8 +1,26 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from db import session
 from model import TestUserTable, TestUser, companiesTable, mangaListsTable
 
 app = FastAPI()
+
+# このCORSの設定は、フロントエンドからのAPIリクエストをサポートするために追加されました。
+# フロントエンドの開発サーバー（localhost:8080）と異なるオリジンから稼働しているこのAPIサーバー間での
+# リクエストは、デフォルトではブラウザによってブロックされてしまいます（CORSポリシーにより）。
+# この設定を追加することで、開発中のフロントエンドからのリクエストを許可し、連携をスムーズに行えるようにしています。
+# 本番環境では、フロントエンドとAPIサーバーが同一オリジンで稼働するため、この設定は不要です。
+origins = [
+    "http://localhost:8080",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # 全会社・アカウント情報一覧取得
 @app.get("/companies")
