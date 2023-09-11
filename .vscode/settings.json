@@ -1,0 +1,15 @@
+{
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true
+    },
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.tabSize": 2,
+    "eslint.options": {
+      "ignorePath": ".prettierignore"
+    },
+    "search.exclude": {
+      "**/.yarn": true,
+      "**/.pnp.*": true
+    },
+  }
