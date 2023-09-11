@@ -75,6 +75,10 @@ class mangaSearch(BaseModel):
     category: str
     content: str
 
+class loginCompany(BaseModel):
+    email: str
+    password: str
+
 def main():
     # テーブル構築
     Base.metadata.create_all(bind=ENGINE)
