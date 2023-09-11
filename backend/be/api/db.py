@@ -7,7 +7,7 @@ db_name = "matching_db"
 user = "user"
 password = "password"
 
-DATABASE = 'mysql://%s:%s@%s/%s?charset=utf8' % (
+DATABASE = 'mysql://%s:%s@%s/%s?charset=utf8mb4' % (
     user,
     password,
     host,
