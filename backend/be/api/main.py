@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from db import session
-from model import TestUserTable, TestUser, companiesTable, mangaListsTable
+from model import TestUserTable, TestUser, companiesTable, mangaListsTable, companies, mangaSearch
 
 app = FastAPI()
 
@@ -36,6 +36,25 @@ def get_companies_adminlist():
 def get_mangaLists_alllist():
     mangaLists = session.query(mangaListsTable).all()
     return mangaLists
+
+# ログイン確認
+@app.post("/companies")
+def companies_logincheck(logincompany: companies):
+    companies_server = session.query(companiesTable).\
+        filter(companiesTable.email == logincompany.email).first()
+    if companies_server == "":
+        return 0
+    if companies_server.password == logincompany.password:
+        return companies_server
+    else:
+        return 0
+
+#　該当漫画の検索とレスポンス
+@app.post("/mangaLists")
+def manga_search(mangaSearch: mangaSearch):
+    manga_server = session.query(mangaListsTable).\
+        filter(companiesTable.genre in mangaSearch.category or companiesTable.title in mangaSearch.content).all()
+    return manga_server
 
 #  下記はサンプル
 #　ユーザー情報一覧取得
