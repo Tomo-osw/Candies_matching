@@ -1,27 +1,8 @@
-
 from fastapi import FastAPI, HTTPException
-from fastapi.middleware.cors import CORSMiddleware
 from db import session
-from model import companiesTable, mangaListsTable, loginCompany, mangaSearch, mangaLists
+from model import companiesTable, mangaListsTable, loginCompany, mangaSearch, mangaLists, newManga, putManga
 
 app = FastAPI()
-
-# このCORSの設定は、フロントエンドからのAPIリクエストをサポートするために追加されました。
-# フロントエンドの開発サーバー（localhost:8080）と異なるオリジンから稼働しているこのAPIサーバー間での
-# リクエストは、デフォルトではブラウザによってブロックされてしまいます（CORSポリシーにより）。
-# この設定を追加することで、開発中のフロントエンドからのリクエストを許可し、連携をスムーズに行えるようにしています。
-# 本番環境では、フロントエンドとAPIサーバーが同一オリジンで稼働するため、この設定は不要です。
-origins = [
-    "http://localhost:8080",
-]
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=origins,
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
 
 # 全会社・アカウント情報一覧取得
 @app.get("/companies")
@@ -105,10 +86,47 @@ def manga_search(mangaSearch: mangaSearch):
         
 # 該当漫画の単一情報取得
 @app.get("/mangaLists/{manga_id}")
-def get_company(manga_id: int):
+def get_manga(manga_id: int):
     manga = session.query(mangaListsTable).\
         filter(mangaListsTable.id == manga_id).first()
     return manga
+
+# 新規漫画の登録作業
+@app.post("/mangaLists/register")
+def register_manga(manga: newManga):
+    new_manga = mangaLists(company_id=manga.company_id, 
+                              title=manga.title,
+                              author=manga.author,
+                              summary=manga.summary,
+                              volumeone_at=manga.volumeone_at,
+                              volumes=manga.volumes,
+                              edition=manga.edition,
+                              is_serialization=manga.is_serialization,
+                              genre=manga.genre,
+                              editor=manga.editor,
+                              picture_url=manga.picture_url,
+                              others=manga.others)
+    session.add(new_manga)
+    session.commit()
+
+# 既存漫画の修正作業
+@app.put("/mangaLists/{manga_id}")
+def put_manga(manga: putManga, manga_id: int):
+    target_manga = session.query(mangaListsTable).\
+        filter(mangaListsTable.id == manga_id).first()
+    target_manga.title = manga.title
+    target_manga.author = manga.author
+    target_manga.summary = manga.summary
+    target_manga.volumeone_at = manga.volumeone_at
+    target_manga.volumes = manga.volumes
+    target_manga.edition = manga.edition
+    target_manga.is_serialization = manga.is_serialization
+    target_manga.genre = manga.genre
+    target_manga.editor = manga.author
+    target_manga.picture_url = manga.picture_url
+    target_manga.others = manga.others
+
+    session.commit()
 
 
 #  下記はサンプル
