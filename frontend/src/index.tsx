@@ -5,7 +5,7 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
-import { Home } from './pages/Home';
+// import { Home } from './pages/Home';
 
 // デフォルト色の設定
 const theme = createTheme({
@@ -35,7 +35,8 @@ root.render(
         <Routes>
           <Route path="/" element={<App />} />
           <Route path="/sample" element={<PlaceholderPage text={'sample'} />} />
-          <Route path="/home" element={<Home />} />
+          {/* <Route path="/home" element={<Home />} /> */}
+          <Route path="/home" element={<PlaceholderPage text={'home'} />} />
           <Route
             path="/searchResult"
             element={<PlaceholderPage text={'searchResult'} />}
