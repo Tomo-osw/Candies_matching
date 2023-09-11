@@ -6,10 +6,10 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import PublisherLoggedInPage from './pages/PublisherLoggedInPage';
-
 import { Home } from './pages/Home';
 import './styles/global.css';
 import ThanksPage from './pages/ThanksPage';
+import SearchResult from './pages/SearchResult';
 
 // デフォルト色の設定
 const theme = createTheme({
@@ -40,11 +40,8 @@ root.render(
           <Route path="/" element={<App />} />
           <Route path="/sample" element={<PlaceholderPage text={'sample'} />} />
           {/* <Route path="/home" element={<Home />} /> */}
+          <Route path="/searchResult" element={<SearchResult text={'searchResult'} />} /
           <Route path="/home" element={<Home />} />
-          <Route
-            path="/searchResult"
-            element={<PlaceholderPage text={'searchResult'} />}
-          />
           <Route
             path="/detail/:id"
             element={<PlaceholderPage text={'detail page'} />}
