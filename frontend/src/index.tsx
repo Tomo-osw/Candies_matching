@@ -7,10 +7,11 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import PublisherLoggedInPage from './pages/PublisherLoggedInPage';
 
-import { Home, MangaDetail } from './pages';
+import { Home } from './pages/Home';
 import './styles/global.css';
 import ThanksPage from './pages/ThanksPage';
-import SearchResult from './pages/SearchResult';
+import RegisterAndEditMangaPage from './pages/RegisterAndEditMangapage';
+import { defaultPostMangaData } from './data/PostMangaData';
 
 // デフォルト色の設定
 const theme = createTheme({
@@ -40,21 +41,25 @@ root.render(
         <Routes>
           <Route path="/" element={<App />} />
           <Route path="/sample" element={<PlaceholderPage text={'sample'} />} />
+          {/* <Route path="/home" element={<Home />} /> */}
+          <Route path="/home" element={<Home />} />
           <Route
             path="/searchResult"
-            element={<SearchResult text={'searchResult'} />}
+            element={<PlaceholderPage text={'searchResult'} />}
           />
-          <Route path="/home" element={<Home />} />
-          <Route path="/detail/:id" element={<MangaDetail />} />
+          <Route
+            path="/detail/:id"
+            element={<PlaceholderPage text={'detail page'} />}
+          />
           <Route path="/thanks" element={<ThanksPage />} />
           <Route path="/login/publisher" element={<PublisherLoggedInPage />} />
           <Route
             path="/registerManga"
-            element={<PlaceholderPage text={'Manga Add Page'} />}
+            element={<RegisterAndEditMangaPage isEditMode={false} data={defaultPostMangaData} />}
           />
           <Route
             path="/editManga"
-            element={<PlaceholderPage text={'Manga Edit Page'} />}
+            element={<RegisterAndEditMangaPage isEditMode={true} data={defaultPostMangaData} />}
           />
 
           {/* ここからは時間があれば作るページ */}
