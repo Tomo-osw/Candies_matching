@@ -40,7 +40,7 @@ root.render(
           <Route path="/" element={<App />} />
           <Route path="/sample" element={<PlaceholderPage text={'sample'} />} />
           {/* <Route path="/home" element={<Home />} /> */}
-          <Route path="/searchResult" element={<SearchResult text={'searchResult'} />} /
+          <Route path="/searchResult" element={<SearchResult text={'searchResult'} />} 
           <Route path="/home" element={<Home />} />
           <Route
             path="/detail/:id"
