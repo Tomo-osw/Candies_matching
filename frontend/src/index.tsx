@@ -6,7 +6,8 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import PublisherLoggedInPage from './pages/PublisherLoggedInPage';
-import { Home } from './pages/Home';
+
+import { Home, MangaDetail } from './pages';
 import './styles/global.css';
 import ThanksPage from './pages/ThanksPage';
 import SearchResult from './pages/SearchResult';
@@ -39,13 +40,12 @@ root.render(
         <Routes>
           <Route path="/" element={<App />} />
           <Route path="/sample" element={<PlaceholderPage text={'sample'} />} />
-          {/* <Route path="/home" element={<Home />} /> */}
-          <Route path="/searchResult" element={<SearchResult text={'searchResult'} />} 
-          <Route path="/home" element={<Home />} />
           <Route
-            path="/detail/:id"
-            element={<PlaceholderPage text={'detail page'} />}
+            path="/searchResult"
+            element={<SearchResult text={'searchResult'} />}
           />
+          <Route path="/home" element={<Home />} />
+          <Route path="/detail/:id" element={<MangaDetail />} />
           <Route path="/thanks" element={<ThanksPage />} />
           <Route path="/login/publisher" element={<PublisherLoggedInPage />} />
           <Route
