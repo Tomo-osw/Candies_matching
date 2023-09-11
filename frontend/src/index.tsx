@@ -5,6 +5,7 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
+import PublisherLoggedInPage from './pages/PublisherLoggedInPage';
 // import { Home } from './pages/Home';
 
 // デフォルト色の設定
@@ -48,7 +49,7 @@ root.render(
           <Route path="/thanks" element={<PlaceholderPage text={'thanks'} />} />
           <Route
             path="/login/publisher"
-            element={<PlaceholderPage text={'Publisher Page'} />}
+            element={<PublisherLoggedInPage />}
           />
           <Route
             path="/registerManga"
