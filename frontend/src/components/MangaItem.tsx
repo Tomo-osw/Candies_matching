@@ -8,11 +8,10 @@ function MangaItem(manga: MangaData) {
     // const graterThanMd = useMediaQuery(theme.breakpoints.up('md'))
     return (
         <Container>
-
         <Card
         elevation={2}
-        children={
-            // カードの下に謎の隙間ができるからネガマージンで強引に削除　できるなら直したい
+        raised={true}>
+            {/* カードの下に謎の隙間ができるからネガマージンで強引に削除　できるなら直したい */}
             <Box sx={{display: "flex", marginBottom: '-7px'}}>
                 {/* <AspectRatio> */}
                     <Box sx={{
@@ -60,8 +59,7 @@ function MangaItem(manga: MangaData) {
                         </Typography>
                 </CardContent>
             </Box>
-        } raised={true}
-            />
+        </Card>
         </Container>
     )
 }

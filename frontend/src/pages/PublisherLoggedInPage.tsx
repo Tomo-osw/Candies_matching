@@ -45,8 +45,8 @@ const PublisherLoggedInPage: React.FC = () => {
         <Grid container spacing={{
             xs: 1,
         }}>
-            {fakeMultipleMangaData.map((manga) => (
-            <Grid item  xs={12} sm={12} md={12}>
+            {fakeMultipleMangaData.map((manga, index) => (
+            <Grid key={index} item xs={12} sm={12} md={12}>
                 <MangaItem {...manga} />
             </Grid>
             ))}
