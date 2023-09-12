@@ -12,6 +12,7 @@ import {
 } from '@mui/material';
 import { useLocation } from 'react-router-dom';
 import { HeaderBar } from '../components/Header';
+import '../styles/searchResult.css';
 
 // ホーム画面から要求される検索クエリ
 interface ReceiveParams {
@@ -80,8 +81,13 @@ const SearchResult: React.FC<SearchResultProps> = () => {
             to={`/detail/${manga.id}`}
             state={{ mangaData: manga }}
             key={manga.id}
+            className="link-style"
           >
-            <Card key={manga.id} style={{ marginBottom: 16 }}>
+            <Card
+              key={manga.id}
+              style={{ marginBottom: 16 }}
+              className="card-style"
+            >
               <Grid container>
                 <Grid item xs={4}>
                   <CardMedia
@@ -104,7 +110,6 @@ const SearchResult: React.FC<SearchResultProps> = () => {
                     </Typography>
                   </CardContent>
                 </Grid>
-
               </Grid>
             </Card>
           </Link>

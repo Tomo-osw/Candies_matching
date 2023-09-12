@@ -1,0 +1,12 @@
+.link-style {
+  text-decoration: none;
+}
+
+.link-style:hover .card-style {
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.card-style {
+  margin-bottom: 16px;
+  transition: 0.3s;
+}
