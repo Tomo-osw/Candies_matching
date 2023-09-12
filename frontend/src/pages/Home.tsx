@@ -1,17 +1,32 @@
 import {
+  Box,
   Button,
   Container,
   SelectChangeEvent,
   Stack,
   TextField,
 } from '@mui/material';
+import axios from 'axios';
 import { HeaderBar } from '../components/Header';
 import { SelectBox } from '../components/Common/Select';
 import { useState, useRef, ChangeEvent, FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+type Publisher = {
+  is_advertiser: boolean;
+  is_working: boolean;
+  name: string;
+  password: string;
+  is_publisher: boolean;
+  is_admin: boolean;
+  id: number;
+  email: string;
+  created_at: string;
+};
+
 export const Home = () => {
   const [category, setCategory] = useState('');
+  const [showValidation, setShowValidation] = useState(false);
   const content = useRef('');
   const navigate = useNavigate();
 
@@ -32,6 +47,29 @@ export const Home = () => {
     navigate('/searchResult', {
       state: { category: category, content: content.current },
     });
+  };
+
+  const toLoginPublisher = async (event: FormEvent<HTMLFormElement>) => {
+    // 既存の処理のキャンセル
+    event.preventDefault();
+
+    const params: { email: string; password: string } = {
+      email: (event.target as any).email.value,
+      password: (event.target as any).password.value,
+    };
+
+    try {
+      const response = await axios.post<Publisher>(
+        'http://0.0.0.0:8000/companies',
+        params,
+      );
+      navigate('/login/publisher', {
+        state: { company_id: response.data.id },
+      });
+    } catch (error) {
+      setShowValidation(true);
+      console.error('Error fetching companise:', error);
+    }
   };
 
   return (
@@ -95,22 +133,28 @@ export const Home = () => {
               width: '100%',
               maxWidth: '360px',
             }}
+            onSubmit={toLoginPublisher}
           >
             <div>ログイン</div>
             <TextField
-              id="outlined-hogehoge"
+              name="email"
               label="メールアドレス"
               variant="outlined"
               type="email"
               sx={{ width: '100%' }}
             />
             <TextField
-              id="outlined-hogehoge"
+              name="password"
               label="パスワード"
               variant="outlined"
               type="password"
               sx={{ width: '100%' }}
             />
+            {showValidation && (
+              <Box sx={{ color: '#f44', textAlign: 'center' }}>
+                アカウントが見つかりませんでした
+              </Box>
+            )}
             <Button type="submit" variant="contained" sx={{ flexShrink: 0 }}>
               ログイン
             </Button>
