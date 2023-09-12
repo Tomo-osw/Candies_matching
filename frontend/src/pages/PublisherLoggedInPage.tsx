@@ -19,7 +19,7 @@ const PublisherLoggedInPage: React.FC = () => {
     const fetchMangas = async () => {
       try {
         const response = await axios.get<MangaData[]>(
-          `http://0.0.0.0:8000/mangaLists/publisher/${params.company_id}`,
+          `http://localhost:8000/mangaLists/publisher/${params.company_id}`,
         );
         setMangaData(response.data);
       } catch (error) {
