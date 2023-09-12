@@ -29,7 +29,7 @@ function MangaItem(manga: MangaData) {
             }}
           >
             <img
-              style={{ aspectRatio: '1/1', width: '100%', filter: 'blur(3px)' }}
+              style={{ aspectRatio: '1/1', width: '100%', filter: 'blur(3px)',  objectFit: 'cover'}}
               src={manga.picture_url}
               loading="lazy"
             />
