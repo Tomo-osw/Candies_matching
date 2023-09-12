@@ -63,7 +63,7 @@ const SearchResult: React.FC<SearchResultProps> = () => {
     <div>
       <Container>
         <h2>検索結果一覧ページ</h2>
-        {/* TODO: 今は全ての漫画データを表示していますが、後々はユーザーの検索クエリに基づく結果を表示するように更新する必要があります。 */}
+        <p>該当件数: {mangas.length} 件</p>
         {mangas.map((manga) => (
           <Card key={manga.id} style={{ marginBottom: 16 }}>
             <Grid container>
