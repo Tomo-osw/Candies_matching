@@ -30,7 +30,7 @@ class mangaListsTable(Base):
     title = Column(String(256), nullable=False)
     author = Column(String(256), nullable=False)
     summary = Column(String(4096), nullable=False)
-    volumeone_at = Column(String(256), nullable=False)
+    volumeone_at = Column(Date, nullable=False)
     volumes = Column(Integer, nullable=False)
     edition = Column(Integer, nullable=False)
     is_serialization = Column(Boolean, nullable=False)
@@ -62,35 +62,7 @@ class mangaLists(BaseModel):
     title: str
     author: str
     summary: str
-    volumeone_at: str
-    volumes: int
-    edition: int
-    is_serialization: bool
-    genre: str
-    editor: str
-    picture_url: str
-    others: str
-
-class newManga(BaseModel):
-    company_id: int
-    title: str
-    author: str
-    summary: str
-    volumeone_at: str
-    volumes: int
-    edition: int
-    is_serialization: bool
-    genre: str
-    editor: str
-    picture_url: str
-    others: str
-
-class putManga(BaseModel):
-    id: int
-    title: str
-    author: str
-    summary: str
-    volumeone_at: str
+    volumeone_at: datetime
     volumes: int
     edition: int
     is_serialization: bool
