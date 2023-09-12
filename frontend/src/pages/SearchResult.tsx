@@ -50,7 +50,7 @@ const SearchResult: React.FC<SearchResultProps> = () => {
     const fetchMangas = async () => {
       try {
         const response = await axios.post<Manga[]>(
-          'http://0.0.0.0:8000/mangaLists',
+          'http://localhost:8000/mangaLists',
           params,
         );
         setMangas(response.data);

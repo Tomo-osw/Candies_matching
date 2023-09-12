@@ -60,7 +60,7 @@ export const Home = () => {
 
     try {
       const response = await axios.post<Publisher>(
-        'http://0.0.0.0:8000/companies',
+        'http://localhost:8000/companies',
         params,
       );
       navigate('/login/publisher', {
