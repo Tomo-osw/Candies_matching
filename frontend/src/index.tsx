@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { PlaceholderPage } from './pages/PlaceholderPage';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
@@ -41,7 +41,8 @@ root.render(
     <ThemeProvider theme={theme}>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<App />} />
+          {/* <Route path="/" element={<App />} /> */}
+          <Route path="/" element={<Navigate to="/home" />} />
           <Route path="/sample" element={<PlaceholderPage text={'sample'} />} />
           {/* <Route path="/home" element={<Home />} /> */}
           <Route path="/home" element={<Home />} />
