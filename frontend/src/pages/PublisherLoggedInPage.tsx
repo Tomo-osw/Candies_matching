@@ -3,6 +3,7 @@ import MangaItem from '../components/MangaItem';
 import { MangaData } from '../data/MangaFakeData';
 import { Box, Container, Grid, Typography } from '@mui/material';
 import { Link, useLocation } from 'react-router-dom';
+import { HeaderBar } from '../components/Header';
 
 import axios from 'axios';
 
@@ -31,13 +32,28 @@ const PublisherLoggedInPage: React.FC = () => {
   }, []);
 
   return (
-    <Container
-      sx={{
-        width: '100% !important',
-      }}
-    >
-      <Container sx={{ py: 2 }}>
-        <Link to="/registerManga">
+    <>
+      <HeaderBar />
+      <Container
+        sx={{
+          width: '100% !important',
+        }}
+      >
+        <Container sx={{ py: 2 }}>
+          <Link to="/registerManga">
+            <Typography
+              sx={{
+                fontSize: {
+                  xs: '1.2rem',
+                  md: '1.5rem',
+                },
+              }}
+              variant="h6"
+            >
+              広告募集中の漫画を登録する
+            </Typography>
+          </Link>
+          <Box sx={{ height: '100px' }}></Box>
           <Typography
             sx={{
               fontSize: {
@@ -45,41 +61,29 @@ const PublisherLoggedInPage: React.FC = () => {
                 md: '1.5rem',
               },
             }}
-            variant="h6"
+            variant="h5"
           >
-            広告募集中の漫画を登録する
+            広告を募集中の漫画一覧
           </Typography>
-        </Link>
-        <Box sx={{ height: '100px' }}></Box>
-        <Typography
-          sx={{
-            fontSize: {
-              xs: '1.2rem',
-              md: '1.5rem',
-            },
-          }}
-          variant="h5"
-        >
-          広告を募集中の漫画一覧
-        </Typography>
-      </Container>
+        </Container>
 
-      <Container sx={{ py: 2 }} maxWidth="lg">
-        {/* End hero unit */}
-        <Grid
-          container
-          spacing={{
-            xs: 1,
-          }}
-        >
-          {mangaData.map((manga, index) => (
-            <Grid key={index} item xs={12} sm={12} md={12}>
-              <MangaItem {...manga} />
-            </Grid>
-          ))}
-        </Grid>
+        <Container sx={{ py: 2 }} maxWidth="lg">
+          {/* End hero unit */}
+          <Grid
+            container
+            spacing={{
+              xs: 1,
+            }}
+          >
+            {mangaData.map((manga, index) => (
+              <Grid key={index} item xs={12} sm={12} md={12}>
+                <MangaItem {...manga} />
+              </Grid>
+            ))}
+          </Grid>
+        </Container>
       </Container>
-    </Container>
+    </>
   );
 };
 
