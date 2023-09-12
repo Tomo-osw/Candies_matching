@@ -94,18 +94,20 @@ def get_manga(manga_id: int):
 # 新規漫画の登録作業
 @app.post("/mangaLists/register")
 def register_manga(manga: newManga):
-    new_manga = mangaLists(company_id=manga.company_id, 
-                              title=manga.title,
-                              author=manga.author,
-                              summary=manga.summary,
-                              volumeone_at=manga.volumeone_at,
-                              volumes=manga.volumes,
-                              edition=manga.edition,
-                              is_serialization=manga.is_serialization,
-                              genre=manga.genre,
-                              editor=manga.editor,
-                              picture_url=manga.picture_url,
-                              others=manga.others)
+    new_manga = mangaListsTable(
+        company_id=manga.company_id,
+        title=manga.title,
+        author=manga.author,
+        summary=manga.summary,
+        volumeone_at=manga.volumeone_at,
+        volumes=manga.volumes,
+        edition=manga.edition,
+        is_serialization=manga.is_serialization,
+        genre=manga.genre,
+        editor=manga.editor,
+        picture_url=manga.picture_url,
+        others=manga.others
+    )
     session.add(new_manga)
     session.commit()
 
