@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import MangaItem from '../components/MangaItem';
 import { MangaData } from '../data/MangaFakeData';
-import { Box, Container, Grid, Typography } from '@mui/material';
+import { Box, Container, Grid, Typography, Button } from '@mui/material';
 import { Link, useLocation } from 'react-router-dom';
 import { HeaderBar } from '../components/Header';
 
@@ -40,19 +40,21 @@ const PublisherLoggedInPage: React.FC = () => {
         }}
       >
         <Container sx={{ py: 2 }}>
-          <Link to="/registerManga">
-            <Typography
-              sx={{
-                fontSize: {
-                  xs: '1.2rem',
-                  md: '1.5rem',
-                },
-              }}
-              variant="h6"
-            >
-              広告募集中の漫画を登録する
-            </Typography>
-          </Link>
+          <Button
+            variant="contained"
+            sx={{
+              width: '320px',
+              flexShrink: 0,
+              fontSize: {
+                xs: '1rem',
+                md: '1.2rem',
+              },
+            }}
+            component={Link}
+            to="/registerManga"
+          >
+            広告募集中の漫画を登録する
+          </Button>
           <Box sx={{ height: '100px' }}></Box>
           <Typography
             sx={{
