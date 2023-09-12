@@ -13,6 +13,7 @@ import DatePicker from '../components/DatePicker';
 import NumerInputRow from '../components/NumberInputRow';
 import NumberInputRow from '../components/NumberInputRow';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const RegisterAndEditMangaPage: React.FC<{
   isEditMode: boolean;
@@ -183,6 +184,7 @@ const RegisterAndEditMangaPage: React.FC<{
             onClick={() => {
               // 更新する処理
               console.log(mangaData);
+              postFormData(mangaData);
               // navigation("/login/publisher")
             }}
             variant="contained"
@@ -195,6 +197,8 @@ const RegisterAndEditMangaPage: React.FC<{
             onClick={() => {
               // 登録する処理
               console.log(mangaData);
+              // 一旦会社のIDは１固定
+              postFormData(mangaData);
               // navigation("/login/publisher")
             }}
             variant="contained"
@@ -207,5 +211,24 @@ const RegisterAndEditMangaPage: React.FC<{
     </Container>
   );
 };
+
+function postFormData(mangaData : PostMangaData) {
+  mangaData.company_id = 1;
+  const axiosInstance = axios.create({
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+    }
+  })
+  axiosInstance.defaults.withCredentials = true
+  axiosInstance.post("http://localhost:8000/mangaLists/register", JSON.stringify(mangaData))
+  .then((res) => {
+    console.log("success")
+    console.log(res.data)
+  })
+  .catch((err) => {
+    console.log(err)
+  })
+}
 
 export default RegisterAndEditMangaPage;
