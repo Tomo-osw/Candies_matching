@@ -13,6 +13,7 @@ import ThanksPage from './pages/ThanksPage';
 import RegisterAndEditMangaPage from './pages/RegisterAndEditMangapage';
 import { defaultPostMangaData } from './data/PostMangaData';
 import SearchResult from './pages/SearchResult';
+import { MangaDetail } from './pages/MangaDetail';
 
 // デフォルト色の設定
 const theme = createTheme({
@@ -48,10 +49,7 @@ root.render(
             path="/searchResult"
             element={<SearchResult text={'searchResult'} />}
           />
-          <Route
-            path="/detail/:id"
-            element={<PlaceholderPage text={'detail page'} />}
-          />
+          <Route path="/detail/:id" element={<MangaDetail />} />
           <Route path="/thanks" element={<ThanksPage />} />
           <Route path="/login/publisher" element={<PublisherLoggedInPage />} />
           <Route

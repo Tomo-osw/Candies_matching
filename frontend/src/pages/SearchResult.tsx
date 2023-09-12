@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 // import { useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import {
   Container,
@@ -10,6 +11,7 @@ import {
   Grid,
 } from '@mui/material';
 import { useLocation } from 'react-router-dom';
+import { HeaderBar } from '../components/Header';
 
 // ホーム画面から要求される検索クエリ
 interface ReceiveParams {
@@ -39,6 +41,8 @@ interface Manga {
 
 const SearchResult: React.FC<SearchResultProps> = () => {
   const [mangas, setMangas] = useState<Manga[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
   const location = useLocation();
   const params = location.state as ReceiveParams;
 
@@ -50,51 +54,60 @@ const SearchResult: React.FC<SearchResultProps> = () => {
           params,
         );
         setMangas(response.data);
+        setLoading(false);
       } catch (error) {
         // 検索結果が見つからない場合もエラーになるので、見直しても良さそう
         console.error('Error fetching mangas:', error);
+        setError('漫画の検索中にエラーが発生しました');
+        setLoading(false);
       }
     };
 
     void fetchMangas();
   }, []);
 
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error occurred: {error}</p>;
+
   return (
     <div>
+      <HeaderBar />
       <Container>
         <h2>検索結果一覧ページ</h2>
         <p>該当件数: {mangas.length} 件</p>
         {mangas.map((manga) => (
-          <Card key={manga.id} style={{ marginBottom: 16 }}>
-            <Grid container>
-              <Grid item xs={4}>
-                <CardMedia
-                  component="img"
-                  alt={manga.title}
-                  image={manga.picture_url}
-                  style={{ width: '60%', filter: 'blur(3px)' }}
-                />
+          <Link
+            to={`/detail/${manga.id}`}
+            state={{ mangaData: manga }}
+            key={manga.id}
+          >
+            <Card key={manga.id} style={{ marginBottom: 16 }}>
+              <Grid container>
+                <Grid item xs={4}>
+                  <CardMedia
+                    component="img"
+                    alt={manga.title}
+                    image={manga.picture_url}
+                    style={{ width: '60%', filter: 'blur(3px)' }}
+                  />
+                </Grid>
+                <Grid item xs={8}>
+                  <CardContent>
+                    <Typography variant="h5" component="div">
+                      {manga.title}
+                    </Typography>
+                    <Typography variant="subtitle1" color="textSecondary">
+                      {manga.author}
+                    </Typography>
+                    <Typography variant="body2">
+                      ジャンル: {manga.genre}
+                    </Typography>
+                  </CardContent>
+                </Grid>
+
               </Grid>
-              <Grid item xs={8}>
-                <CardContent>
-                  <Typography variant="h5" component="div">
-                    {manga.title}
-                  </Typography>
-                  <Typography variant="subtitle1" color="textSecondary">
-                    {manga.author}
-                  </Typography>
-                  <Typography variant="body2">{manga.summary}</Typography>
-                  <Typography variant="body2">
-                    連載開始: {manga.volumeone_at}
-                  </Typography>
-                  <Typography variant="body2">巻数: {manga.volumes}</Typography>
-                  <Typography variant="body2">
-                    ジャンル: {manga.genre}
-                  </Typography>
-                </CardContent>
-              </Grid>
-            </Grid>
-          </Card>
+            </Card>
+          </Link>
         ))}
       </Container>
     </div>

@@ -1,4 +1,5 @@
-import { useParams } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useParams, useLocation, useNavigate } from 'react-router-dom';
 
 import {
   Box,
@@ -11,15 +12,52 @@ import {
 } from '@mui/material';
 import { HeaderBar } from '../components/Header';
 
+type Manga = {
+  url: string;
+  title: string;
+  author: string;
+  companyName: string;
+  year: string | number;
+  summary: string;
+  [key: string]: any; // for any additional properties
+};
+
 export const MangaDetail = () => {
   const { id } = useParams();
-  // Backendから検索して、データを取得する
-  const url = '';
-  const title = '推しの子';
-  const author = '赤坂アカ';
-  const companyName = '集英社';
-  const year = '2020';
-  const summary = '推しのアイドルの子供に転生してほにゃらら....';
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<Error | null>(null);
+  const [email, setEmail] = useState(''); // メールアドレスの状態
+  const [emailError, setEmailError] = useState(''); // メールアドレスエラーメッセージ
+  const location = useLocation();
+  const mangaData = location.state?.mangaData;
+
+  if (!mangaData) {
+    return (
+      <div>
+        <HeaderBar />
+        <Container>
+          <Typography variant="h6" color="error">
+            エラー: 漫画のデータが見つかりません。
+          </Typography>
+        </Container>
+      </div>
+    );
+  }
+
+  const handleFormSubmit = (e: React.FormEvent) => {
+    // フォーム送信ハンドラ
+    e.preventDefault();
+    if (!email) {
+      setEmailError('メールアドレスを入力してください。');
+      return;
+    }
+    setEmailError('');
+    navigate('/thanks'); // useNavigateを使用して遷移
+  };
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error occurred: {error.message}</p>;
 
   return (
     <>
@@ -37,7 +75,7 @@ export const MangaDetail = () => {
               backgroundColor: '#eee',
               filter: 'blur(3px)',
             }}
-            src={url}
+            src={mangaData.picture_url}
             loading="lazy"
           />
           <CardContent
@@ -50,36 +88,47 @@ export const MangaDetail = () => {
             }}
           >
             <Box component="h1" sx={{ margin: 0, fontSize: '2.5em' }}>
-              {title}
+              {mangaData.title}
             </Box>
             <Box
               component="h2"
               sx={{ fontWeight: 'normal', fontSize: '1.1em', margin: 0 }}
             >
-              作者: {author}
+              作者: {mangaData.author}
             </Box>
             <Box
               component="h2"
               sx={{ fontWeight: 'normal', fontSize: '1.1em', margin: 0 }}
             >
-              出版社: {companyName}
+              連載開始: {mangaData.volumeone_at}
             </Box>
             <Box
               component="h2"
               sx={{ fontWeight: 'normal', fontSize: '1.1em', margin: 0 }}
             >
-              {year}年
+              状態: {mangaData.is_serialization ? '連載中' : '完結済'}
             </Box>
-            {/* idについては開発用であり、削除予定 */}
-            <Box>ID: {id}</Box>
+            <Box
+              component="h2"
+              sx={{ fontWeight: 'normal', fontSize: '1.1em', margin: 0 }}
+            >
+              巻数: {mangaData.volumes}巻
+            </Box>
+            <Box
+              component="h2"
+              sx={{ fontWeight: 'normal', fontSize: '1.1em', margin: 0 }}
+            >
+              その他: {mangaData.others}
+            </Box>
           </CardContent>
         </Box>
         <Box sx={{ width: '100%', whiteSpace: 'pre-wrap' }}>
-          {`概要:\n${summary}`}
+          {`概要:\n${mangaData.summary}`}
         </Box>
         <Box sx={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
           <Stack
             component="form"
+            onSubmit={handleFormSubmit}
             sx={{
               border: 'solid 1px #ccc',
               borderRadius: '10px',
@@ -106,6 +155,8 @@ export const MangaDetail = () => {
                 variant="outlined"
                 type="email"
                 sx={{ width: '100%' }}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
               <Button type="submit" variant="contained" sx={{ flexShrink: 0 }}>
                 送 信
