@@ -70,7 +70,7 @@ def manga_search(mangaSearch: mangaSearch):
     if mangaSearch.category != "":
         if mangaSearch.content != "":
             manga_server = session.query(mangaListsTable).\
-                filter(mangaListsTable.genre == mangaSearch.category).filter(mangaListsTable.title==mangaSearch.content).all()
+                filter(mangaListsTable.genre == mangaSearch.category).filter(mangaListsTable.title.like(f"%{mangaSearch.content}%")).all()
             return manga_server
         else:
             manga_server = session.query(mangaListsTable).\
@@ -79,10 +79,10 @@ def manga_search(mangaSearch: mangaSearch):
     else:
         if mangaSearch.content != "":
             manga_server = session.query(mangaListsTable).\
-                filter(mangaListsTable.title==mangaSearch.content).all()
+                filter(mangaListsTable.title.like(f"%{mangaSearch.content}%")).all()
             return manga_server
         else:
-            return HTTPException(status_code=401, detail="manga not found")
+            raise HTTPException(status_code=401, detail="manga not found")
         
 # 該当漫画の単一情報取得
 @app.get("/mangaLists/{manga_id}")
