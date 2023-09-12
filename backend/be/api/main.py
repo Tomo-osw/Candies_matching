@@ -1,8 +1,21 @@
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from db import session
 from model import companiesTable, mangaListsTable, loginCompany, mangaSearch, mangaLists, newManga, putManga
 
 app = FastAPI()
+
+origins = [
+    "http://localhost:8080",  # フロントエンドのアドレス
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # 全会社・アカウント情報一覧取得
 @app.get("/companies")
