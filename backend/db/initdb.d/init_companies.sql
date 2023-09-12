@@ -4,3 +4,8 @@ INSERT INTO companies (name, email, password, is_publisher, is_advertiser) VALUE
 INSERT INTO companies (name, email, password, is_publisher, is_advertiser) VALUES ("KODANSHA", "kodansha@example.com", "password", 1, 0);
 INSERT INTO companies (name, email, password, is_publisher, is_advertiser) VALUES ("HAKUSENSHA", "hakusensha@example.com", "password", 1, 0);
 INSERT INTO companies (name, email, password, is_publisher, is_advertiser) VALUES ("DENTSU", "dentsu@example.com", "password", 0, 1);
+INSERT INTO companies (name, email, password, is_publisher, is_advertiser) VALUES ("SHOGAKUKAN", "shogakukan@example.com", "password", 1, 0);
+INSERT INTO companies (name, email, password, is_publisher, is_advertiser) VALUES ("FUTABASHA", "futabasha@example.com", "password", 1, 0);
+INSERT INTO companies (name, email, password, is_publisher, is_advertiser) VALUES ("AKITASHOTEN", "akitashoten@example.com", "password", 1, 0);
+INSERT INTO companies (name, email, password, is_publisher, is_advertiser) VALUES ("TAKESHOBO", "takeshobo@example.com", "password", 1, 0);
+INSERT INTO companies (name, email, password, is_publisher, is_advertiser) VALUES ("POPLAR", "poplar@example.com", "password", 1, 0);
