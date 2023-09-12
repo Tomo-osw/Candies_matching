@@ -20,7 +20,7 @@ export const defaultPostMangaData: PostMangaData = {
   title: "",
   author: "",
   summary: "",
-  volumeone_at: "2020-02-10",
+  volumeone_at: "",
   volumes: 1,
   edition: 1,
   is_serialization: false,

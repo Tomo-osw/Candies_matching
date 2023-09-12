@@ -88,7 +88,7 @@ const SearchResult: React.FC<SearchResultProps> = () => {
                     component="img"
                     alt={manga.title}
                     image={manga.picture_url}
-                    style={{ width: '60%' }}
+                    style={{ width: '60%', filter: 'blur(3px)' }}
                   />
                 </Grid>
                 <Grid item xs={8}>
@@ -104,6 +104,7 @@ const SearchResult: React.FC<SearchResultProps> = () => {
                     </Typography>
                   </CardContent>
                 </Grid>
+
               </Grid>
             </Card>
           </Link>

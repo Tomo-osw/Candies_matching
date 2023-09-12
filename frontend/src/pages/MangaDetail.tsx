@@ -73,6 +73,7 @@ export const MangaDetail = () => {
               height: '30vw',
               maxHeight: '360px',
               backgroundColor: '#eee',
+              filter: 'blur(3px)',
             }}
             src={mangaData.picture_url}
             loading="lazy"
