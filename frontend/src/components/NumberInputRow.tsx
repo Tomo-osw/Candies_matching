@@ -8,6 +8,7 @@ export type NumberInputRowProps = {
   // 数字を扱うコンポーネントなのにややこしいが、isTextFieldはあくまで複数行の入力かどうかを制御する
   isTextField: boolean,
   isHalf: boolean,
+  required: boolean,
   value: number,
   onValueChange: (value: number) => void,
 }
@@ -36,7 +37,7 @@ const NumberInputRow: React.FC<NumberInputRowProps> = (props: NumberInputRowProp
             error={isError}
             helperText="数字を入力してください"
             defaultValue={props.value}
-            required
+            required={props.required}
             id={props.name}
             name={props.name}
             fullWidth

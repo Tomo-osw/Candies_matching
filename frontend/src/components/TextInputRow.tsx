@@ -6,6 +6,7 @@ export type TextInputRowProps = {
   placeholderText: string,
   isTextField: boolean,
   isHalf: boolean,
+  required: boolean,
   value: string,
   onValueChange: (value: string) => void,
 }
@@ -33,7 +34,7 @@ const TextInputRow: React.FC<TextInputRowProps> = (props: TextInputRowProps) => 
             props.isTextField ? 
             <TextField
             defaultValue={props.value}
-            required
+            required={props.required}
             id={props.name}
             name={props.name}
             fullWidth
@@ -44,7 +45,7 @@ const TextInputRow: React.FC<TextInputRowProps> = (props: TextInputRowProps) => 
           /> : 
           <TextField
           defaultValue={props.value}
-            required
+            required={props.required}
             multiline
             rows={5}
             maxRows={10}
