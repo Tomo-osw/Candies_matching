@@ -12,10 +12,12 @@ import { PostMangaData, defaultPostMangaData } from '../data/PostMangaData';
 import DatePicker from '../components/DatePicker';
 import NumerInputRow from '../components/NumberInputRow';
 import NumberInputRow from '../components/NumberInputRow';
+import { useNavigate } from 'react-router-dom';
 
 const RegisterAndEditMangaPage: React.FC<{isEditMode: boolean, data: PostMangaData}> = ({
   isEditMode, data
 }) => {
+  const navigation = useNavigate();
   const [mangaData, setMangaData] = React.useState(defaultPostMangaData);
   useEffect(() => {
     if (data) {
@@ -34,6 +36,7 @@ const RegisterAndEditMangaPage: React.FC<{isEditMode: boolean, data: PostMangaDa
         <Grid container spacing={4}>
           <TextInputRow
             isHalf={false}
+            required={true}
             name='mangaTitle'
             labelText='漫画のタイトル'
             placeholderText='漫画のタイトル'
@@ -44,6 +47,7 @@ const RegisterAndEditMangaPage: React.FC<{isEditMode: boolean, data: PostMangaDa
           
           <TextInputRow
             isHalf={false}
+            required={true}
             name="mangaAuthor"
             labelText='漫画の作者'
             placeholderText='漫画の作者'
@@ -54,6 +58,7 @@ const RegisterAndEditMangaPage: React.FC<{isEditMode: boolean, data: PostMangaDa
 
           <TextInputRow
             isHalf={false}
+            required={false}
             name="mangaSummary"
             labelText='漫画の概要'
             placeholderText='漫画の概要'
@@ -64,6 +69,7 @@ const RegisterAndEditMangaPage: React.FC<{isEditMode: boolean, data: PostMangaDa
 
           <TextInputRow
             isHalf={false}
+            required={true}
             name="mangaGenre"
             labelText='漫画のジャンル'
             placeholderText='漫画のジャンル'
@@ -74,6 +80,7 @@ const RegisterAndEditMangaPage: React.FC<{isEditMode: boolean, data: PostMangaDa
 
           <TextInputRow
             isHalf={false}
+            required={false}
             name="mangaEditor"
             labelText='漫画の編集者'
             placeholderText='漫画の編集者'
@@ -84,6 +91,7 @@ const RegisterAndEditMangaPage: React.FC<{isEditMode: boolean, data: PostMangaDa
 
           <TextInputRow
             isHalf={false}
+            required={false}
             name="mangaPictureUrl"
             labelText='漫画の画像'
             placeholderText='漫画の画像'
@@ -94,6 +102,7 @@ const RegisterAndEditMangaPage: React.FC<{isEditMode: boolean, data: PostMangaDa
 
           <TextInputRow
             isHalf={false}
+            required={false}
             name="mangaOthers"
             labelText='その他'
             placeholderText='その他'
@@ -120,6 +129,7 @@ const RegisterAndEditMangaPage: React.FC<{isEditMode: boolean, data: PostMangaDa
 
           <NumberInputRow
             isHalf={true}
+            required={false}
             name="mangaEdition"
             labelText='版数'
             placeholderText='版数'
@@ -134,6 +144,7 @@ const RegisterAndEditMangaPage: React.FC<{isEditMode: boolean, data: PostMangaDa
 
           <NumberInputRow
             isHalf={true}
+            required={true}
             name="mangaEdition"
             labelText='総巻数'
             placeholderText='総巻数'
@@ -156,10 +167,12 @@ const RegisterAndEditMangaPage: React.FC<{isEditMode: boolean, data: PostMangaDa
           <Button onClick={() => {
             // 更新する処理
             console.log(mangaData)
+            navigation("/login/publisher")
           }} variant="contained" sx={{ marginTop: '20px' }}>更新`</Button> :
           <Button onClick={() => {
             // 登録する処理
             console.log(mangaData)
+            navigation("/login/publisher")
           }} variant="contained" sx={{ marginTop: '20px' }}>登録</Button>
         }
       </Container>
