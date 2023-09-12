@@ -12,6 +12,7 @@ import './styles/global.css';
 import ThanksPage from './pages/ThanksPage';
 import RegisterAndEditMangaPage from './pages/RegisterAndEditMangapage';
 import { defaultPostMangaData } from './data/PostMangaData';
+import SearchResult from './pages/SearchResult';
 
 // デフォルト色の設定
 const theme = createTheme({
@@ -45,7 +46,7 @@ root.render(
           <Route path="/home" element={<Home />} />
           <Route
             path="/searchResult"
-            element={<PlaceholderPage text={'searchResult'} />}
+            element={<SearchResult text={'searchResult'} />}
           />
           <Route
             path="/detail/:id"
@@ -55,11 +56,21 @@ root.render(
           <Route path="/login/publisher" element={<PublisherLoggedInPage />} />
           <Route
             path="/registerManga"
-            element={<RegisterAndEditMangaPage isEditMode={false} data={defaultPostMangaData} />}
+            element={
+              <RegisterAndEditMangaPage
+                isEditMode={false}
+                data={defaultPostMangaData}
+              />
+            }
           />
           <Route
             path="/editManga"
-            element={<RegisterAndEditMangaPage isEditMode={true} data={defaultPostMangaData} />}
+            element={
+              <RegisterAndEditMangaPage
+                isEditMode={true}
+                data={defaultPostMangaData}
+              />
+            }
           />
 
           {/* ここからは時間があれば作るページ */}

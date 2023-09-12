@@ -17,7 +17,7 @@ CREATE TABLE mangaLists (
     title VARCHAR(256) NOT NULL,
     author VARCHAR(128) NOT NULL,
     summary VARCHAR(4096) NOT NULL,
-    volumeone_at DATE NOT NULL,
+    volumeone_at VARCHAR(256) NOT NULL,
     volumes INT(11) NOT NULL,
     edition INT(11) NOT NULL,
     is_serialization BOOLEAN NOT NULL,
