@@ -50,6 +50,13 @@ export const Home = () => {
               { value: 'アクション', content: 'アクション' },
               { value: 'SF', content: 'SF' },
               { value: 'ファンタジー', content: 'ファンタジー' },
+              { value: 'ダークファンタジー', content: 'ダークファンタジー' },
+              { value: 'ドラマ', content: 'ドラマ' },
+              { value: 'サスペンス', content: 'サスペンス' },
+              {
+                value: '転生×恋愛×サスペンス',
+                content: '転生×恋愛×サスペンス',
+              },
             ]}
             value={category}
             onChange={categoryHandle}
