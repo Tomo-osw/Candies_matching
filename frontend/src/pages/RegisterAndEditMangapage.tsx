@@ -19,6 +19,7 @@ const RegisterAndEditMangaPage: React.FC<{isEditMode: boolean, data: PostMangaDa
 }) => {
   const navigation = useNavigate();
   const [mangaData, setMangaData] = React.useState(defaultPostMangaData);
+  const [isSerial, setIsSerial] = React.useState(false);
   useEffect(() => {
     if (data) {
       console.log("defaultValue")
@@ -118,7 +119,16 @@ const RegisterAndEditMangaPage: React.FC<{isEditMode: boolean, data: PostMangaDa
               justifyContent: 'center',
             }}
           >
-            <Checkbox checked={mangaData.is_serialization} onChange={(e) => mangaData.is_serialization = Boolean(e.target.value)}/>
+            <Checkbox
+              checked={isSerial}
+              onChange={(e) => {
+                // setStateは非同期で動くので、ここで反映されていないみたいなので新しい値を変数に入れておく
+                // https://zenn.dev/takuty/articles/c032310a6643ac
+                const newVal = !isSerial
+                setIsSerial(newVal)
+                mangaData.is_serialization = newVal
+                console.log(mangaData.is_serialization)
+            }}/>
             <Typography sx={{
               marginLeft: '8px',
               width: '200px',
@@ -167,12 +177,12 @@ const RegisterAndEditMangaPage: React.FC<{isEditMode: boolean, data: PostMangaDa
           <Button onClick={() => {
             // 更新する処理
             console.log(mangaData)
-            navigation("/login/publisher")
+            // navigation("/login/publisher")
           }} variant="contained" sx={{ marginTop: '20px' }}>更新`</Button> :
           <Button onClick={() => {
             // 登録する処理
             console.log(mangaData)
-            navigation("/login/publisher")
+            // navigation("/login/publisher")
           }} variant="contained" sx={{ marginTop: '20px' }}>登録</Button>
         }
       </Container>
