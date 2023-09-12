@@ -1,6 +1,6 @@
 export interface MangaData {
   id: number;
-  companyName: string;
+  company_name: string;
   title: string;
   author: string;
   summary: string;
@@ -17,7 +17,7 @@ export interface MangaData {
 
 export const fakeSingleMangaData: MangaData = {
   id: 1,
-  companyName: '出版社名',
+  company_name: '出版社名',
   title: '漫画タイトル',
   author: '漫画作者',
   summary:
@@ -35,7 +35,7 @@ export const fakeSingleMangaData: MangaData = {
 export const fakeMultipleMangaData: MangaData[] = [
   {
     id: 1,
-    companyName: '出版社名',
+    company_name: '出版社名',
     title: '漫画タイトル',
     author: '漫画作者',
     summary:
@@ -51,7 +51,7 @@ export const fakeMultipleMangaData: MangaData[] = [
   },
   {
     id: 2,
-    companyName: '出版社名2',
+    company_name: '出版社名2',
     title: '漫画タイトル2',
     author: '漫画作者2',
     summary: '漫画の説明2\nhogehoge\nfugafuga',
@@ -66,7 +66,7 @@ export const fakeMultipleMangaData: MangaData[] = [
   },
   {
     id: 3,
-    companyName: '出版社名3',
+    company_name: '出版社名3',
     title: '漫画タイトル3',
     author: '漫画作者3',
     summary: '漫画の説明3\nhogehoge\nfugafuga',
