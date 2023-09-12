@@ -69,12 +69,12 @@ def companies_logincheck(logincompany: loginCompany):
     companies_server = session.query(companiesTable).\
         filter(companiesTable.email == logincompany.email).first()
     if companies_server == None:
-        return HTTPException(status_code=401, detail="Company not found")
+        raise HTTPException(status_code=401, detail="Company not found")
     
     if companies_server.password == logincompany.password:
         return companies_server
     else:
-        return HTTPException(status_code=401, detail="Company not found")
+        raise HTTPException(status_code=401, detail="Company not found")
 
 # アカウント情報取得
 @app.get("/companies/{company_id}")
@@ -101,7 +101,7 @@ def manga_search(mangaSearch: mangaSearch):
                 filter(mangaListsTable.title==mangaSearch.content).all()
             return manga_server
         else:
-            return HTTPException(status_code=401, detail="manga not found")
+            raise HTTPException(status_code=401, detail="manga not found")
         
 # 該当漫画の単一情報取得
 @app.get("/mangaLists/{manga_id}")
