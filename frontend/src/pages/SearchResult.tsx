@@ -50,10 +50,16 @@ const SearchResult: React.FC<SearchResultProps> = () => {
   useEffect(() => {
     const fetchMangas = async () => {
       try {
-        const response = await axios.post<Manga[]>(
+      setLoading(true);
+      let response;
+      if (params.category === '' && params.content === '') {
+        response = await axios.get<Manga[]>('http://localhost:8000/mangaLists');
+      } else {
+        response = await axios.post<Manga[]>(
           'http://localhost:8000/mangaLists',
           params,
         );
+      }
         setMangas(response.data);
         setLoading(false);
       } catch (error) {
