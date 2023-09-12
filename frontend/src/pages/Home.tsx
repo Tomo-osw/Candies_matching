@@ -5,6 +5,7 @@ import {
   SelectChangeEvent,
   Stack,
   TextField,
+  Typography,
 } from '@mui/material';
 import axios from 'axios';
 import { HeaderBar } from '../components/Header';
@@ -82,7 +83,12 @@ export const Home = () => {
           gap: '20px',
         }}
       >
-        <Stack component="form" sx={{ gap: '10px' }} onSubmit={toSearchResult}>
+        <Stack
+          component="form"
+          sx={{ gap: '10px' }}
+          onSubmit={toSearchResult}
+          marginTop={'100px'}
+        >
           <SelectBox
             elements={[
               { value: 'アクション', content: 'アクション' },
@@ -117,10 +123,22 @@ export const Home = () => {
               検 索
             </Button>
           </div>
+          <Typography
+            variant="body2"
+            gutterBottom
+            sx={{ color: 'rgba(0, 0, 0, 0.6)', fontSize: '0.8rem' }}
+          >
+            企業の方はこちらから漫画を検索
+          </Typography>
         </Stack>
 
         <div
-          style={{ display: 'flex', justifyContent: 'center', width: '100%' }}
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            width: '100%',
+            marginTop: '1em',
+          }}
         >
           <Stack
             component="form"
@@ -135,7 +153,12 @@ export const Home = () => {
             }}
             onSubmit={toLoginPublisher}
           >
-            <div>ログイン</div>
+            <div style={{ textAlign: 'center', marginBottom: '1em' }}>
+              <Typography variant="h6">ログイン</Typography>
+              <Typography variant="subtitle2" color="textSecondary">
+                出版社の方はこちらから
+              </Typography>
+            </div>
             <TextField
               name="email"
               label="メールアドレス"
