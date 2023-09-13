@@ -12,24 +12,59 @@ import { PostMangaData, defaultPostMangaData } from '../data/PostMangaData';
 import DatePicker from '../components/DatePicker';
 import NumerInputRow from '../components/NumberInputRow';
 import NumberInputRow from '../components/NumberInputRow';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { HeaderBar } from '../components/Header';
+
+type ReceiveParams = {
+  company_id: number;
+};
 
 const RegisterAndEditMangaPage: React.FC<{
   isEditMode: boolean;
   data: PostMangaData;
 }> = ({ isEditMode, data }) => {
-  const navigation = useNavigate();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const params = location.state as ReceiveParams;
+
   const [mangaData, setMangaData] = React.useState(defaultPostMangaData);
+  const [error, setError] = React.useState(false); // エラーの状態
   const [isSerial, setIsSerial] = React.useState(false);
   useEffect(() => {
     if (data) {
-      console.log('defaultValue');
-      console.log(data);
       setMangaData(data);
+    } else {
+      mangaData.is_serialization = isSerial;
     }
+    mangaData.company_id = params.company_id;
   }, []);
+
+  const postFormData = (mangaData: PostMangaData) => {
+    const axiosInstance = axios.create({
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+      },
+    });
+    axiosInstance.defaults.withCredentials = true;
+    axiosInstance
+      .post(
+        'http://localhost:8000/mangaLists/register',
+        JSON.stringify(mangaData),
+      )
+      .then((res) => {
+        // 登録後は元の画面に戻る
+        console.log('success');
+        navigate('/login/publisher', {
+          state: { company_id: params.company_id },
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        setError(true);
+      });
+  };
 
   return (
     <>
@@ -174,6 +209,11 @@ const RegisterAndEditMangaPage: React.FC<{
             />
           </Grid>
         </Container>
+        {error && (
+          <Box sx={{ color: '#f44', textAlign: 'center' }}>
+            登録に失敗しました
+          </Box>
+        )}
         <Container
           sx={{
             widows: '100%',
@@ -215,28 +255,5 @@ const RegisterAndEditMangaPage: React.FC<{
     </>
   );
 };
-
-function postFormData(mangaData: PostMangaData) {
-  mangaData.company_id = 1;
-  const axiosInstance = axios.create({
-    headers: {
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
-    },
-  });
-  axiosInstance.defaults.withCredentials = true;
-  axiosInstance
-    .post(
-      'http://localhost:8000/mangaLists/register',
-      JSON.stringify(mangaData),
-    )
-    .then((res) => {
-      console.log('success');
-      console.log(res.data);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-}
 
 export default RegisterAndEditMangaPage;

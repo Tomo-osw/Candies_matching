@@ -12,6 +12,7 @@ import { HeaderBar } from '../components/Header';
 import { SelectBox } from '../components/Common/Select';
 import { useState, useRef, ChangeEvent, FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Candies } from '../components/Icon/Candies';
 
 type Publisher = {
   is_advertiser: boolean;
@@ -83,6 +84,12 @@ export const Home = () => {
           gap: '20px',
         }}
       >
+        <Box sx={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
+          <Candies
+            style={{ width: '100%', height: 'auto', maxWidth: '640px' }}
+          />
+        </Box>
+
         <Stack
           component="form"
           sx={{ gap: '10px' }}

@@ -29,7 +29,12 @@ function MangaItem(manga: MangaData) {
             }}
           >
             <img
-              style={{ aspectRatio: '1/1', width: '100%', filter: 'blur(3px)',  objectFit: 'cover'}}
+              style={{
+                aspectRatio: '1/1',
+                width: '100%',
+                filter: 'blur(3px)',
+                objectFit: 'cover',
+              }}
               src={manga.picture_url}
               loading="lazy"
             />
@@ -57,7 +62,6 @@ function MangaItem(manga: MangaData) {
               {manga.title}
             </Typography>
             <Typography>作者: {manga.author}</Typography>
-            <Typography>作者: {manga.companyName}</Typography>
             <Typography
               sx={{
                 display: '-webkit-box',

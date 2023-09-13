@@ -52,6 +52,7 @@ const PublisherLoggedInPage: React.FC = () => {
             }}
             component={Link}
             to="/registerManga"
+            state={{ company_id: params.company_id }}
           >
             広告募集中の漫画を登録する
           </Button>
