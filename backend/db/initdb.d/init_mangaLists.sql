@@ -40,7 +40,7 @@ VALUES (4, 'カイジ', '福本伸行', '生死を賭けたギャンブル', '19
 
 -- 漫画11: 推しの子
 INSERT INTO mangaLists (company_id, title, author, summary, volumeone_at, volumes, edition, is_serialization, genre, editor, picture_url, others)
-VALUES (3, '推しの子', '赤坂アカ・横槍メンゴ', '主人公の青年が死後に前世の記憶を持ったまま、推していたアイドルの子供に生まれ変わる「転生もの」。ファンタジー設定でありながら、サスペンス要素や現代社会を投影した展開、芸能界の闇へ切り込むリアルさが本作の特徴である。「推し」は、アイドルファンなどの間で「応援している人」の意味で使われ、本作タイトルは「推していたアイドルの子供に転生する」という意味が込められており、主人公とその妹のことを指す。表題に含まれる隅付き括弧（【】）は、外側が二重線になった独自記号を用いるのがタイトルロゴでの正式表記とされ、演出上の意味がある伏線となっている。', '2020-04-23', 12, 1, true, '転生×恋愛×サスペンス', 'サカイ', 'https://dosbg3xlm0x1t.cloudfront.net/images/items/9784088916507/1200/9784088916507.jpg', '主題歌：アイドル（YOASOBI）/公式HP : https://ichigoproduction.com/');
+VALUES (3, '推しの子', '赤坂アカ・横槍メンゴ', '主人公の青年が死後に前世の記憶を持ったまま、推していたアイドルの子供に生まれ変わる「転生もの」。ファンタジー設定でありながら、サスペンス要素や現代社会を投影した展開、芸能界の闇へ切り込むリアルさが本作の特徴である。「推し」は、アイドルファンなどの間で「応援している人」の意味で使われ[4]、本作タイトルは「推していたアイドルの子供に転生する」という意味が込められており、主人公とその妹のことを指す。表題に含まれる隅付き括弧（【】）は、外側が二重線になった独自記号を用いるのがタイトルロゴでの正式表記とされ、演出上の意味がある伏線となっている。', '2020-04-23', 12, 1, true, '転生×恋愛×サスペンス', 'サカイ', 'https://dosbg3xlm0x1t.cloudfront.net/images/items/9784088916507/1200/9784088916507.jpg', '主題歌：アイドル（YOASOBI）/公式HP : https://ichigoproduction.com/');
 
 -- 漫画12: 東京卍リベンジャーズ
 INSERT INTO mangaLists (company_id, title, author, summary, volumeone_at, volumes, edition, is_serialization, genre, editor, picture_url, others)
