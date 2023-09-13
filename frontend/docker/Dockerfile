@@ -2,7 +2,7 @@ FROM node:18.17.0-alpine
 
 WORKDIR /app
 
-COPY ./frontend/package*.json ./
+COPY ./package*.json ./
 
 RUN npm ci
 
